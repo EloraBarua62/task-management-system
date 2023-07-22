@@ -8,7 +8,7 @@ function Home() {
 
 
     // Set in localstorage
-    localStorage.setItem("task_list", JSON.stringify({title, description}));
+    localStorage.setItem("task_list", JSON.stringify([{title, description}]));
     console.log(title,description)
   };
 
