@@ -11,17 +11,40 @@ export const TaskModel = types.model("TaskModel", {
 
 
 // Store of all task 
-export const taskStore = types.model("taskStore" , {
-    taskList: types.array(TaskModel)
-})
+export const taskStore = types
+  .model("taskStore", {
+    taskList: types.array(TaskModel),
+  })
+  .actions((store) => ({
+    // New task added
+    addTasks(task: object) {
+      store.taskList.push(task);
+    },
+
+    // All tasks fetched
+    async fetchTasks() {
+      const tasks = localStorage.getItem("task_list");
+      
+      const task_list = JSON.parse(tasks);
+      console.log(task_list);
+      store.taskList = task_list;
+      console.log(store.taskList);
+    },
+
+    // Remove task
+    removeTask(taskId: any) {
+        store.taskList.remove(taskId);
+    },
+  }));
 
 
-
-
-// .actions(store => ({
-//     addTasks(task: any){
-//         store.taskList.push(task);
-//     },
-// }))
+//   const task_list = taskStore.create({taskList: []})
+  let _taskStore: any;
+  export const useTasks = () => {
+    if(!_taskStore){
+        _taskStore = taskStore.create({taskList :[]});
+    }
+    return _taskStore;
+  }
 
 
