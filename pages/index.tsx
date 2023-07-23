@@ -13,10 +13,6 @@ function Home() {
     const status = 0;
     
     taskStore.addTasks({id, title, description,status });
-
-    // Set in localstorage
-    // localStorage.setItem("task_list", JSON.stringify([{title, description}]));
-    // console.log(title,description)
   };
 
     return(

@@ -26,7 +26,6 @@ export const taskStore = types
     addTasks(task: object) {
       console.log(task);
       store.taskList.push(task);
-      console.log(store.taskList);
       localStorage.setItem("task_list", JSON.stringify(store.taskList));
     },
 
@@ -40,8 +39,10 @@ export const taskStore = types
     },
 
     // Remove task
-    removeTask(taskId: any) {
-        store.taskList.remove(taskId);
+    removeTask(task: any) {
+        store.taskList.remove(task);
+        this.setTasks(store.taskList);
+        localStorage.setItem("task_list", JSON.stringify(store.taskList));
     },
   }));
 
