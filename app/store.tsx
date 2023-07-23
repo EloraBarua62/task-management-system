@@ -2,32 +2,58 @@ import { types } from "mobx-state-tree";
 
 
 // Model including all fields of task
-export const TaskModel = types.model("TaskModel", {
+export const taskModel = types.model("taskModel", {
     id: types.optional(types.identifier, ()=> Math.random().toString()),
     title: types.optional(types.string, "Untitles task"),
     description: types.optional(types.string, "No description"),
-    status: types.optional(types.number, 0)
-});
+    status: types.optional(types.string, "To Do")
+})
+// .actions((task) => ({
+//   setTask(newTask: any){
+//     task.title = newTask.title;
+//     task.description = newTask.description;
+//     task.status = newTask.status;
+//     console.log(newTask)
+
+//   }
+// }))
 
 
 // Store of all task 
 export const taskStore = types
   .model("taskStore", {
-    taskList: types.array(TaskModel),
+    taskList: types.array(taskModel),
   })
   .actions((store) => ({
     
     // Set task
     setTasks(newTask: any){
-      store.taskList = newTask;
+      store.taskList = newTask || [];
+      console.log(newTask)
     },
     
     // New task added
     addTasks(task: object) {
-      console.log(task);
-      store.taskList.push(task);
+      this.setTasks([...store.taskList, task]);
+      console.log(store.taskList);
       localStorage.setItem("task_list", JSON.stringify(store.taskList));
     },
+
+    // update task
+    setTask(newTask: any){
+      const task_index = store.taskList.findIndex(task => task.id === newTask.id );
+      store.taskList[task_index].title = newTask.title;
+      store.taskList[task_index].description = newTask.description;
+      store.taskList[task_index].status = newTask.status;
+      localStorage.setItem("task_list", JSON.stringify(store.taskList));
+
+
+    // task.title = newTask.title;
+    // task.description = newTask.description;
+    // task.status = newTask.status;
+    // console.log(newTask)
+
+  },
 
     // All tasks fetched
     async fetchTasks() {
@@ -55,5 +81,14 @@ export const taskStore = types
     }
     return _taskStore;
   }
+
+
+  // let _taskModel: any;
+  // export const useTask = () => {
+  //   if(!_taskModel){
+  //       _taskModel = taskModel.create({id: '',title:'', description:'',status:'' });
+  //   }
+  //   return _taskModel;
+  // }
 
 

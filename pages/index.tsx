@@ -10,7 +10,7 @@ function Home() {
     const id = Math.random().toString();
     const title = event.target.title.value;
     const description = event.target.description.value;
-    const status = 0;
+    const status = 'To Do';
     
     taskStore.addTasks({id, title, description,status });
   };
