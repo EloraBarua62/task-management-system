@@ -1,15 +1,22 @@
+import { useTasks } from "../app/store";
+
 function Home() {
 
+  const taskStore = useTasks();
+  
   // Handle data and process
   const handleNewTask = (event: any) => {
     event.preventDefault();
+    const id = Math.random().toString();
     const title = event.target.title.value;
     const description = event.target.description.value;
-
+    const status = 0;
+    
+    taskStore.addTasks({id, title, description,status });
 
     // Set in localstorage
-    localStorage.setItem("task_list", JSON.stringify([{title, description}]));
-    console.log(title,description)
+    // localStorage.setItem("task_list", JSON.stringify([{title, description}]));
+    // console.log(title,description)
   };
 
     return(

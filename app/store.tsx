@@ -16,19 +16,27 @@ export const taskStore = types
     taskList: types.array(TaskModel),
   })
   .actions((store) => ({
+    
+    // Set task
+    setTasks(newTask: any){
+      store.taskList = newTask;
+    },
+    
     // New task added
     addTasks(task: object) {
+      console.log(task);
       store.taskList.push(task);
+      console.log(store.taskList);
+      localStorage.setItem("task_list", JSON.stringify(store.taskList));
     },
 
     // All tasks fetched
     async fetchTasks() {
-      const tasks = localStorage.getItem("task_list");
-      
+      const tasks = localStorage.getItem("task_list");    
       const task_list = JSON.parse(tasks);
       console.log(task_list);
-      store.taskList = task_list;
-      console.log(store.taskList);
+      // console.log(store);
+      this.setTasks(task_list);
     },
 
     // Remove task
