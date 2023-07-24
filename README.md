@@ -1,4 +1,4 @@
-This is a [Task Management Propject](https://vercel.live/link/task-management-system-foqaaqrjf-elorabarua62.vercel.app?via=deployment-domains-list-commit) to view, update and delete tasks.
+This is a [Task Management Project](https://task-management-system-chi.vercel.app/) to view, update and delete tasks.
 
 ## Getting Started
 
@@ -20,5 +20,5 @@ yarn dev
 pnpm dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+After setting up project in local machine,open [http://localhost:3000](http://localhost:3000) with your browser to see the result locally.
 
