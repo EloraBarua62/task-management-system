@@ -28,7 +28,6 @@ export default observer(function Front() {
 
   // Delete task
   const handleDelete = (task: object) => {
-    console.log(task);
     taskStore.removeTask(task);
   };
 
