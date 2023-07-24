@@ -5,7 +5,7 @@ import { useTasks } from "../../app/store";
 
 // Props type
 type Props = {
-  updatedTask: object;
+  updatedTask: any;
   setUpdateForm: (val: boolean) => void;
 };
 

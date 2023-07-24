@@ -5,6 +5,14 @@ import { observer } from "mobx-react-lite";
 import UpdateTask from "../components/UpdateTask/UpdateTask";
 
 
+// Props type
+type Props = {
+  id: any;
+  title: string;
+  description: string;
+  status: string;
+};
+
 // Main funtion: Front
 export default observer(function Front() {
   
@@ -86,7 +94,7 @@ export default observer(function Front() {
 
             
             {/* Task updation form */}
-            {updateForm && updatedTask.id === task.id && (
+            {updateForm && (updatedTask as Props).id === task.id && (
               <UpdateTask
                 updatedTask={updatedTask}
                 setUpdateForm={setUpdateForm}
